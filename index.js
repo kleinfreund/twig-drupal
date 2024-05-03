@@ -116,10 +116,10 @@ DrupalAttribute.prototype.toString = function () {
 module.exports = {
   engine: twig.twig,
 
-  extendEngine({ engine, init }) {
+  extendEngine({ engine, init }, cache = false) {
     const engineInstance = engine || twig;
 
-    engineInstance.cache(false);
+    engineInstance.cache(cache);
 
     twigDrupal(engineInstance);
 
