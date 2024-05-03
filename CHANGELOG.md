@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/miyagi-dev/twig-drupal/compare/v0.2.2...v0.2.3) (2024-05-03)
+
+
+### Bug Fixes
+
+* allow enabling twig cache (for production builds) ([8242fe7](https://github.com/miyagi-dev/twig-drupal/commit/8242fe776e9cd5089837f437264ed4b20f95c420))
+
 ### 0.2.2 (2022-09-21)
 
 
