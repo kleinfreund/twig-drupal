@@ -104,8 +104,11 @@ DrupalAttribute.prototype.toString = function () {
       ? value.join(" ")
       : typeof value === "boolean" ? String(value) : value;
 
+    // HTML-escape `"` characters.
+    const escapedValue = normalizedValue.replace(/"/g, '&quot;');
+
     // Set `attribute` instead of `attribute=""` when the value is the empty string.
-    components.push(attribute + (normalizedValue === "" ? "" : '="' + normalizedValue + '"'));
+    components.push(attribute + (escapedValue === "" ? "" : '="' + escapedValue + '"'));
   });
 
   let rendered = components.join(" ");

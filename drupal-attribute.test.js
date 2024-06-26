@@ -23,6 +23,12 @@ describe("DrupalAttribute", () => {
       },
       ` class="one two three"`,
     ],
+    [
+      {
+        test: '"double-quotes"',
+      },
+      ' test="&quot;double-quotes&quot;"'
+    ],
   ])("toString", (attributes, htmlAttributeString) => {
     const drupalAttribute = new DrupalAttribute(Object.entries(attributes))
     expect(drupalAttribute.toString()).toEqual(htmlAttributeString);
