@@ -104,7 +104,10 @@ DrupalAttribute.prototype.toString = function () {
       ? value.join(" ")
       : typeof value === "boolean" ? String(value) : value;
 
-    components.push(attribute + '="' + normalizedValue + '"');
+    // HTML-escape `"` characters.
+    const escapedValue = normalizedValue.replace(/"/g, '&quot;');
+
+    components.push(attribute + '="' + escapedValue + '"');
   });
 
   let rendered = components.join(" ");
