@@ -1,7 +1,10 @@
 /**
- * @param {Array} args
+ * @param {Array<[string, string[] | string | boolean]>} args
  */
 function DrupalAttribute(args) {
+  /**
+   * @type {Array<[string, string[] | string | boolean]>}
+   */
   this.args = args;
 
   this.args.forEach((arg) => {
@@ -90,14 +93,19 @@ DrupalAttribute.prototype.toString = function () {
   let result = "";
   let components = [];
 
-  this.args.forEach(([value, key]) => {
-    if (Array.isArray(value)) {
-      value = value.join(" ");
+  this.args.forEach(([attribute, value]) => {
+    // Ignore the special `$drupal` attribute.
+    if (attribute === "$drupal") {
+      return;
     }
 
-    if (value !== "$drupal") {
-      components.push([value, '"' + key + '"'].join("="));
-    }
+    // Normalize array-of-strings and boolean values to strings.
+    const normalizedValue = Array.isArray(value)
+      ? value.join(" ")
+      : typeof value === "boolean" ? String(value) : value;
+
+    // Set `attribute` instead of `attribute=""` when the value is the empty string.
+    components.push(attribute + (normalizedValue === "" ? "" : '="' + normalizedValue + '"'));
   });
 
   let rendered = components.join(" ");

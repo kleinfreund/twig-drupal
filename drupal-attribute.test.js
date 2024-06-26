@@ -15,7 +15,13 @@ describe("DrupalAttribute", () => {
         "boolean-true": true,
         "boolean-false": false,
       },
-      ' data-selector="" aria-controls="test" id="test" single-space=" " boolean-true="true" boolean-false="false"'
+      ' data-selector aria-controls="test" id="test" single-space=" " boolean-true="true" boolean-false="false"'
+    ],
+    [
+      {
+        class: ["one", "two", "three"],
+      },
+      ` class="one two three"`,
     ],
   ])("toString", (attributes, htmlAttributeString) => {
     const drupalAttribute = new DrupalAttribute(Object.entries(attributes))
